@@ -33,6 +33,7 @@ class MultiUploadAdmin(admin.ModelAdmin):
         }
     change_form_template = 'multiupload/change_form.html'
     change_list_template = 'multiupload/change_list.html'
+    multiupload_template = 'multiupload/upload.html'
     multiupload_list = True
     multiupload_form = True
     # integer in bytes
@@ -259,6 +260,6 @@ class MultiUploadAdmin(admin.ModelAdmin):
             }
 
             return render(request,
-                'multiupload/upload.html',
+                self.multiupload_template,
                 context,
                 )

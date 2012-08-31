@@ -1,0 +1,2 @@
+recursive-include multiupload *.html *.po *.mo *.js *.css
+

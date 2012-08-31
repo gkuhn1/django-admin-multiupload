@@ -1,0 +1,15 @@
+{% extends 'admin/change_form.html' %}
+{% load url from future %}
+{% load i18n %}
+
+{% block object-tools-items %}
+  {% if multiupload_form %}
+  <li> 
+    <a href="{{ multiupload_form_url }}">{% trans 'Multiupload' %}</a> 
+  </li> 
+  {% endif %}
+{{ block.super }} 
+ 
+{% endblock %} 
+
+

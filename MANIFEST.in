@@ -1,2 +1,2 @@
-recursive-include multiupload *.html *.po *.mo *.js *.css
+recursive-include multiupload *.html *.po *.mo *.js *.css *.png *.ico
 

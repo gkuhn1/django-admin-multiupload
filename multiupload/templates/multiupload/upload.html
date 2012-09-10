@@ -9,9 +9,11 @@
 {% url 'admin:jsi18n' as jsi18nurl %}
   <script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
 {{ media }}
+  <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js" /></script>
 {% endblock %}
 
 {% block extrastyle %}{{ block.super }}
+   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />
 {% endblock %}
 
@@ -42,22 +44,34 @@
 <div id="fileupload">
     <form action="." method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="fileupload-buttonbar">
+        <div class="span8 fileupload-buttonbar">
             <label class="fileinput-button">
-                <span>{% trans 'add files' %}</span>
+                <span class="btn btn-primary">
+                    <i class="icon-plus-sign icon-white"></i>
+                  Adicionar</span>
                 <input type="file" name="files[]" multiple>
             </label>
-            <button type="submit" class="start">{% trans 'Start' %}</button>
-            <button type="reset" class="cancel">{% trans 'Cancel' %}</button>
-            <button type="button" class="delete">{% trans 'Delete' %}</button>
+            <button type="submit" class="btn btn-success start">
+              <i class="icon-upload icon-white"></i>
+              Iniciar Envio</button>
+            <button type="reset" class="btn btn-warning cancel"> 
+              <i class="icon-warning-sign icon-white"></i>
+              Cancelar Envio</button>
+            <button type="button" class="btn btn-danger delete">
+              <i class="icon-trash icon-white"></i>
+              Deletar Arquivos</button>
+        </div>
+        <div class="span5 fileupload-progress fade">
+          <!-- The global progress bar -->
+          <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="bar" style="width: 0%; "></div>
+          </div>
+          <!-- The extended global progress information -->
+          <div class="progress-extended">&nbsp;</div>
         </div>
     </form>
     <div class="fileupload-content">
         <table class="files"></table>
-        <div id="fileupload-progressbar"></div>
-        <div style="text-align: center; font-weight: bold; font-size: 15px;">
-            <span id="percent"></span>
-        </div>
     </div>
     
 </div>
@@ -77,8 +91,8 @@
                 <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar" style="width:0%;"></div></div>
             </td>
             <td class="start">
-              <label>{%=locale.fileupload.titleLabel%}</label>
-              <input type="text" name="title" />
+              <!--<label>{%=locale.fileupload.titleLabel%}</label>-->
+              <input type="text" name="title" placeholder="{%=locale.fileupload.titleLabel%}"/>
               {% if (!o.options.autoUpload) { %}
             <button style="display: none";>
                 <i class="icon-ban-circle icon-white"></i>
@@ -90,7 +104,7 @@
         {% } %}
         <td class="cancel">{% if (!i) { %}
             <button class="btn btn-warning">
-                <i class="icon-ban-circle icon-white"></i>
+                <i class="icon-warning-sign icon-white"></i>
                 <span>{%=locale.fileupload.cancel%}</span>
             </button>
         {% } %}</td>
@@ -143,7 +157,6 @@ $(function () {
         }
         data.formData = inputs.serializeArray();
       }).bind('fileuploaddestroy', function (e, data) {
-        console.log(data);
         $.post(data.url, {});
       });
 });

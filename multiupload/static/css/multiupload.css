@@ -10,6 +10,16 @@
  * http://www.opensource.org/licenses/MIT
  */
 
+body {
+    font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+h1 {
+    line-height: inherit;
+}
+
 .fileinput-button {
   position: relative;
   overflow: hidden;

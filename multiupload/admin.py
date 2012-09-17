@@ -188,7 +188,7 @@ class MultiUploadAdmin(admin.ModelAdmin):
 
                         # Manipulate file.
                         data = self.process_uploaded_file(f, object,
-                                        **request.POST)
+                                        request)
 
                         assert 'id' in data, 'Must return id in data'
                         response_data.update(data)

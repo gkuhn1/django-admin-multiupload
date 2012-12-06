@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-31 16:26-0300\n"
+"POT-Creation-Date: 2012-12-06 15:50-0200\n"
 "PO-Revision-Date: 2012-08-31 16:26+0300\n"
 "Last-Translator: GUILHERME KUHN <g.kuhn0@gmail.com>\n"
 "Language-Team: \n"
@@ -20,58 +20,70 @@ msgstr ""
 
 #: templates/multiupload/change_form.html:8
 #: templates/multiupload/change_list.html:8
-#: templates/multiupload/upload.html:29 templates/multiupload/upload.html:34
+#: templates/multiupload/upload.html:52 templates/multiupload/upload.html:57
 msgid "Multiupload"
 msgstr ""
 
-#: templates/multiupload/upload.html:25 templates/multiupload/upload.html:31
+#: templates/multiupload/upload.html:48 templates/multiupload/upload.html:54
 msgid "Home"
 msgstr "Inicio"
 
-#: templates/multiupload/upload.html:47
-msgid "add files"
+#: templates/multiupload/upload.html:63
+msgid "back"
+msgstr "Voltar"
+
+#: templates/multiupload/upload.html:70
+msgid "Add files"
 msgstr "Adicionar"
 
-#: templates/multiupload/upload.html:50 templates/multiupload/upload.html:161
-msgid "Start"
+#: templates/multiupload/upload.html:75
+msgid "Start upload"
 msgstr "Iniciar envio"
 
-#: templates/multiupload/upload.html:51 templates/multiupload/upload.html:162
-msgid "Cancel"
+#: templates/multiupload/upload.html:79
+msgid "Cancel upload"
 msgstr "Cancelar envio"
 
-#: templates/multiupload/upload.html:52 templates/multiupload/upload.html:163
+#: templates/multiupload/upload.html:83 templates/multiupload/upload.html:202
 msgid "Delete"
 msgstr "Deletar"
 
-#: templates/multiupload/upload.html:153
+#: templates/multiupload/upload.html:192
 msgid "File is too big"
 msgstr "Arquivo é muito grande"
 
-#: templates/multiupload/upload.html:154
+#: templates/multiupload/upload.html:193
 msgid "File is too small"
 msgstr "Arquivo é muito pequeno"
 
-#: templates/multiupload/upload.html:155
+#: templates/multiupload/upload.html:194
 msgid "Filetype not allowed"
 msgstr "Tipo de arquivo não permitido"
 
-#: templates/multiupload/upload.html:156
+#: templates/multiupload/upload.html:195
 msgid "Max number of files exceeded"
 msgstr "Número máximo de arquivos excedido"
 
-#: templates/multiupload/upload.html:157
+#: templates/multiupload/upload.html:196
 msgid "Uploaded bytes exceed file size"
 msgstr "Bytes enviados excede tamanho do arquivo"
 
-#: templates/multiupload/upload.html:158
+#: templates/multiupload/upload.html:197
 msgid "Empty file upload result"
 msgstr "Arquivo em branco"
 
-#: templates/multiupload/upload.html:160
+#: templates/multiupload/upload.html:199
 msgid "Error"
 msgstr "Erro"
 
-#: templates/multiupload/upload.html:164
+#: templates/multiupload/upload.html:200
+msgid "Start"
+msgstr "Iniciar envio"
+
+#: templates/multiupload/upload.html:201
+msgid "Cancel"
+msgstr "Cancelar envio"
+
+#: templates/multiupload/upload.html:203
 msgid "Title"
 msgstr "Título"

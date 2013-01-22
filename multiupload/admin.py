@@ -95,12 +95,14 @@ class MultiUploadAdmin(admin.ModelAdmin):
         multi_urls = patterns('')
         if self.multiupload_list:
             multi_urls += patterns('',
-                url(r'^multiupload/$', self.admin_upload_view,
+                url(r'^multiupload/$',
+                    self.admin_site.admin_view(self.admin_upload_view),
                     name=self.get_multiupload_list_view_name())
             )
         if self.multiupload_form:
             multi_urls += patterns('',
-                url(r'^(?P<id>\d+)/multiupload/$', self.admin_upload_view,
+                url(r'^(?P<id>\d+)/multiupload/$',
+                    self.admin_site.admin_view(self.admin_upload_view),
                     name=self.get_multiupload_form_view_name()),
             )
         return multi_urls + super(MultiUploadAdmin, self

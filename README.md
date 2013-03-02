@@ -8,6 +8,12 @@ Installation
 
 pip install git+git://github.com/gkuhn1/django-admin-multiupload.git
 
+Requeriments
+------------
+
+Django>=1.4
+
+
 Usage
 -----
 

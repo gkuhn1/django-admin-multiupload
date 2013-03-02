@@ -108,28 +108,28 @@ class MultiUploadAdmin(admin.ModelAdmin):
         return multi_urls + super(MultiUploadAdmin, self
             ).get_urls(*args, **kwargs)
 
-    def process_uploaded_file(self, uploaded, object, **kwargs):
+    def process_uploaded_file(self, uploaded, object, request):
         '''
         Process uploaded file
         Parameters:
             uploaded: File that was uploaded
             object: parent object where multiupload is
-            **kwargs: is request.POST
+            request: request Object
         Must return a dict with:
         return {
-            'thumbnail_url': 'full_path_to_thumb.png',
-            'url': 'full_file_URL.png',
-            'file_id': 'id of created file',
+            'url': 'url to download the file',
+            'thumbnail_url': 'some url for an image_thumbnail or icon',
+            'id': 'id of instance created in this method',
+            'name': 'the name of created file',
 
             # optionals
-            "name": "filename",
             "size": "filesize",
             "type": "file content type",
             "delete_type": "POST",
             "error" = 'Error message or jQueryFileUpload Error code'
         }
         '''
-        return {}
+        raise NotImplementedError
 
     def delete_file(self, pk, request):
         '''

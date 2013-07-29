@@ -9,6 +9,7 @@ from django.utils import simplejson as json
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
 
+
 class MultiUploadAdmin(admin.ModelAdmin):
     class Media:
         js = (
@@ -103,8 +104,8 @@ class MultiUploadAdmin(admin.ModelAdmin):
                     self.admin_site.admin_view(self.admin_upload_view),
                     name=self.get_multiupload_form_view_name()),
             )
-        return multi_urls + super(MultiUploadAdmin, self
-            ).get_urls(*args, **kwargs)
+        return multi_urls + super(MultiUploadAdmin, self).get_urls(*args,
+                                                                   **kwargs)
 
     def process_uploaded_file(self, uploaded, object, request):
         '''
@@ -162,7 +163,7 @@ class MultiUploadAdmin(admin.ModelAdmin):
                         error = "minFileSize"
                         # allowed file type
                     if f.content_type not in \
-                        self.upload_options["acceptedformats"]:
+                            self.upload_options["acceptedformats"]:
                         error = "acceptFileTypes"
 
                     # the response data which will be returned to
@@ -189,7 +190,7 @@ class MultiUploadAdmin(admin.ModelAdmin):
 
                         # Manipulate file.
                         data = self.process_uploaded_file(f, object,
-                            request)
+                                                          request)
 
                         assert 'id' in data, 'Must return id in data'
                         response_data.update(data)
@@ -266,4 +267,4 @@ class MultiUploadAdmin(admin.ModelAdmin):
             return render(request,
                           self.multiupload_template,
                           context,
-            )
+                          )

@@ -1,3 +1,4 @@
+[![codeq](https://codeq.io/github/gkuhn1/django-admin-multiupload/badges/master.png)](https://codeq.io/github/gkuhn1/django-admin-multiupload/branches/master)
 django-admin-multiupload
 ========================
 

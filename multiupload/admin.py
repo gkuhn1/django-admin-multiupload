@@ -3,12 +3,10 @@ import urllib
 
 from django.contrib import admin
 from django.shortcuts import render, get_object_or_404
-from django.conf import settings
 from django.conf.urls.defaults import patterns, url
 from django.core.urlresolvers import reverse
 from django.utils import simplejson as json
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.contrib.auth.decorators import user_passes_test
 from django.views.decorators.csrf import csrf_exempt
 
 class MultiUploadAdmin(admin.ModelAdmin):
@@ -37,12 +35,12 @@ class MultiUploadAdmin(admin.ModelAdmin):
     multiupload_list = True
     multiupload_form = True
     # integer in bytes
-    multiupload_maxfilesize = 3 * 2 ** 20 # 3 Mb
+    multiupload_maxfilesize = 3 * 2 ** 20  # 3 Mb
     multiupload_minfilesize = 0
     # tuple with mimetype accepted
-    multiupload_acceptedformats = ( "image/jpeg",
-                                    "image/pjpeg",
-                                    "image/png",)
+    multiupload_acceptedformats = ("image/jpeg",
+                                   "image/pjpeg",
+                                   "image/png", )
 
     @property
     def upload_options(self):
@@ -50,7 +48,7 @@ class MultiUploadAdmin(admin.ModelAdmin):
             "maxfilesize": self.multiupload_maxfilesize,
             "minfilesize": self.multiupload_minfilesize,
             "acceptedformats": self.multiupload_acceptedformats,
-          }
+        }
 
     def render_change_form(self, request, context, *args, **kwargs):
         context.update({
@@ -62,17 +60,17 @@ class MultiUploadAdmin(admin.ModelAdmin):
                 context.update({
                     'multiupload_form_url': reverse(
                         'admin:%s' % self.get_multiupload_form_view_name(),
-                         args=[object_id,]),
+                        args=[object_id, ]),
                 })
         return super(MultiUploadAdmin, self).render_change_form(
-                request, context, *args, **kwargs)
+            request, context, *args, **kwargs)
 
     def changelist_view(self, request, extra_context=None):
         pop = request.REQUEST.get('pop')
         extra_context = extra_context or {}
         extra_context.update({
-                'multiupload_list': self.multiupload_list,
-            })
+            'multiupload_list': self.multiupload_list,
+        })
         if self.multiupload_list:
             url = reverse('admin:%s' % self.get_multiupload_list_view_name())
             if pop:
@@ -146,7 +144,7 @@ class MultiUploadAdmin(admin.ModelAdmin):
         else:
             object = None
         if request.method == 'POST':    # POST data
-            if not ("f" in request.GET.keys()): # upload file
+            if not ("f" in request.GET.keys()):  # upload file
                 if not request.FILES:
                     return HttpResponseBadRequest('Must upload a file')
 
@@ -163,7 +161,8 @@ class MultiUploadAdmin(admin.ModelAdmin):
                     if f.size < self.upload_options["minfilesize"]:
                         error = "minFileSize"
                         # allowed file type
-                    if f.content_type not in self.upload_options["acceptedformats"]:
+                    if f.content_type not in \
+                        self.upload_options["acceptedformats"]:
                         error = "acceptFileTypes"
 
                     # the response data which will be returned to
@@ -175,7 +174,7 @@ class MultiUploadAdmin(admin.ModelAdmin):
                         "delete_type": "POST",
                     }
 
-                    # if there was an error, add error message 
+                    # if there was an error, add error message
                     # to response_data and return
                     if error:
                         # append error message
@@ -190,7 +189,7 @@ class MultiUploadAdmin(admin.ModelAdmin):
 
                         # Manipulate file.
                         data = self.process_uploaded_file(f, object,
-                                        request)
+                            request)
 
                         assert 'id' in data, 'Must return id in data'
                         response_data.update(data)
@@ -205,7 +204,8 @@ class MultiUploadAdmin(admin.ModelAdmin):
                 response_type = "application/json"
 
                 # QUIRK HERE
-                # in jQuey uploader, when it falls back to uploading using iFrames
+                # in jQuey uploader, when it falls back to uploading
+                # using iFrames
                 # the response content type has to be text/html
                 # if json will be send, error will occur
                 # if iframe is sending the request, it's headers are
@@ -222,7 +222,8 @@ class MultiUploadAdmin(admin.ModelAdmin):
                 # return the data to the uploading plugin
                 return HttpResponse(response_data, mimetype=response_type)
 
-            else: # file has to be deleted
+            else:
+                # file has to be deleted
                 # get the file path by getting it from the query
                 # (e.g. '?f=filename.here')
                 self.delete_file(request.GET["f"], request)
@@ -237,7 +238,8 @@ class MultiUploadAdmin(admin.ModelAdmin):
                 # here it always has to be json
                 return HttpResponse(response_data, mimetype="application/json")
 
-        else: #GET
+        else:
+            #GET
             context = {
                 # these two are necessary to generate the jQuery templates
                 # they have to be included here since they conflict
@@ -252,7 +254,7 @@ class MultiUploadAdmin(admin.ModelAdmin):
                 'media': self.media,
                 'opts': self.model._meta,
                 'change': False,
-                'is_popup': request.GET.has_key('pop'),
+                'is_popup': 'pop' in request.GET,
                 'add': True,
                 'app_label': self.model._meta.app_label,
                 'save_as': 'teste',
@@ -262,6 +264,6 @@ class MultiUploadAdmin(admin.ModelAdmin):
             }
 
             return render(request,
-                self.multiupload_template,
-                context,
-                )
+                          self.multiupload_template,
+                          context,
+            )

@@ -3,7 +3,7 @@ import urllib
 
 from django.contrib import admin
 from django.shortcuts import render, get_object_or_404
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls import patterns,url
 from django.core.urlresolvers import reverse
 from django.utils import simplejson as json
 from django.http import HttpResponse, HttpResponseBadRequest

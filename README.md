@@ -44,21 +44,26 @@ Usage
                                         "image/pjpeg",
                                         "image/png",)
 
-        def process_uploaded_file(self, uploaded, object, **kwargs):
+        def process_uploaded_file(self, uploaded, object, request):
             '''
-            This method will be called for every file uploaded.
+            Process uploaded file
             Parameters:
-                :uploaded: instance of uploaded file
-                :object: instance of object if in form_multiupload else None
-                :kwargs: request.POST received with file
-            Return:
-                It MUST return at least a dict with:
-                {
-                    'url': 'url to download the file',
-                    'thumbnail_url': 'some url for an image_thumbnail or icon',
-                    'id': 'id of instance created in this method',
-                    'name': 'the name of created file',
-                }
+                uploaded: File that was uploaded
+                object: parent object where multiupload is
+                request: request Object
+            Must return a dict with:
+            return {
+                'url': 'url to download the file',
+                'thumbnail_url': 'some url for an image_thumbnail or icon',
+                'id': 'id of instance created in this method',
+                'name': 'the name of created file',
+
+                # optionals
+                "size": "filesize",
+                "type": "file content type",
+                "delete_type": "POST",
+                "error" = 'Error message or jQueryFileUpload Error code'
+            }
             '''
             # example:
             title = kwargs.get('title', [''])[0] or uploaded.name
@@ -84,6 +89,9 @@ Usage
 
 Example of usage can be founded here:
 https://github.com/gkuhn1/django-adminfiles/blob/master/adminfiles/admin.py
+
+Checkout some full example project in example folder.
+Superuser: Login: demo Pass: demo
 
 
 

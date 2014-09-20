@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.shortcuts import get_object_or_404
 
 from gallery.models import Gallery, Image
 
@@ -26,6 +27,13 @@ class GalleryAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
     inlines = [ImageInlineAdmin,]
     multiupload_form = True
     multiupload_list = False
+
+    def delete_file(self, pk, request):
+        '''
+        Delete an image.
+        '''
+        obj = get_object_or_404(Image, pk=pk)
+        return obj.delete()
 
 
 class ImageAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):

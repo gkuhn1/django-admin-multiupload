@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-import urllib
+try:
+    from urllib import urlencode
+except ImportError:
+    from urllib.parse import urlencode
 
 from django.contrib import admin
 from django.shortcuts import render, get_object_or_404
@@ -138,7 +141,7 @@ class MultiUploadAdmin(admin.ModelAdmin):
         Function to delete a file.
         '''
         obj = get_object_or_404(self.queryset(request), pk=pk)
-        obj.delete()
+        return obj.delete()
 
     @csrf_exempt
     # @user_passes_test(lambda u: u.is_staff)
@@ -198,7 +201,7 @@ class MultiUploadAdmin(admin.ModelAdmin):
                         assert 'id' in data, 'Must return id in data'
                         response_data.update(data)
                         response_data['delete_url'] = request.path + "?"\
-                            + urllib.urlencode({'f': data['id']})
+                            + urlencode({'f': data['id']})
 
                     resp.append(response_data)
 
@@ -230,13 +233,11 @@ class MultiUploadAdmin(admin.ModelAdmin):
                 # file has to be deleted
                 # get the file path by getting it from the query
                 # (e.g. '?f=filename.here')
-                self.delete_file(request.GET["f"], request)
-
                 # generate true json result
                 # in this case is it a json True value
                 # if true is not returned, the file will not be
                 # removed from the upload queue
-                response_data = json.dumps(True)
+                response_data = json.dumps(self.delete_file(request.GET.get("f"), request))
 
                 # return the result data
                 # here it always has to be json

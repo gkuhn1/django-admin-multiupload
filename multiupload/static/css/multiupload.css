@@ -92,3 +92,7 @@ h1 {
     width: 60px;
   }
 }
+
+.preview img {
+  max-width: 75px;
+}

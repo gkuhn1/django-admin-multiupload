@@ -58,11 +58,12 @@ class MultiUploadAdmin(admin.ModelAdmin):
         if self.multiupload_form:
             if 'object_id' in context:
                 object_id = context['object_id']
-                context.update({
-                    'multiupload_form_url': reverse(
-                        'admin:%s' % self.get_multiupload_form_view_name(),
-                        args=[object_id, ]),
-                })
+                if object_id is not None:
+                    context.update({
+                        'multiupload_form_url': reverse(
+                            'admin:%s' % self.get_multiupload_form_view_name(),
+                            args=[object_id, ]),
+                    })
         return super(MultiUploadAdmin, self).render_change_form(
             request, context, *args, **kwargs)
 
@@ -204,7 +205,7 @@ class MultiUploadAdmin(admin.ModelAdmin):
                 # generate the json data
                 response_data = json.dumps(resp)
                 # response type
-                response_type = "application/json"
+                content_type = "application/json"
 
                 # QUIRK HERE
                 # in jQuey uploader, when it falls back to uploading
@@ -219,11 +220,11 @@ class MultiUploadAdmin(admin.ModelAdmin):
                 # using jFrame because
                 # that value is not in the set when uploaded by XHR
                 if "text/html" in request.META["HTTP_ACCEPT"]:
-                    response_type = "text/html"
-                response_type = "text/html"
+                    content_type = "text/html"
+                content_type = "text/html"
 
                 # return the data to the uploading plugin
-                return HttpResponse(response_data, mimetype=response_type)
+                return HttpResponse(response_data, content_type=content_type)
 
             else:
                 # file has to be deleted
@@ -239,7 +240,7 @@ class MultiUploadAdmin(admin.ModelAdmin):
 
                 # return the result data
                 # here it always has to be json
-                return HttpResponse(response_data, mimetype="application/json")
+                return HttpResponse(response_data, content_type="application/json")
 
         else:
             #GET

@@ -89,12 +89,12 @@ class MultiUploadAdmin(admin.ModelAdmin):
     def get_multiupload_list_view_name(self):
         app_name = self.model._meta.app_label
         module_name = self.model._meta.module_name
-        return '{}_{}_multiupload_list'.format(app_name, module_name)
+        return '%s_%s_multiupload_list' % (app_name, module_name)
 
     def get_multiupload_form_view_name(self):
         app_name = self.model._meta.app_label
         module_name = self.model._meta.module_name
-        return '{}_{}_multiupload_form'.format(app_name, module_name)
+        return '%s_%s_multiupload_form' % (app_name, module_name)
 
     def get_urls(self, *args, **kwargs):
         multi_urls = patterns('')

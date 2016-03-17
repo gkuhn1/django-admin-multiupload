@@ -71,7 +71,7 @@ class MultiUploadAdmin(admin.ModelAdmin):
             request, context, *args, **kwargs)
 
     def changelist_view(self, request, extra_context=None):
-        pop = request.REQUEST.get('pop')
+        pop = request.POST.get('pop')
         extra_context = extra_context or {}
         extra_context.update({
             'multiupload_list': self.multiupload_list,

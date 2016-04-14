@@ -1,6 +1,7 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_modify %}
 {% load raw %}
+{% load staticfiles %}
 
 {% block title %}Multiupload {{ block.super }}{% endblock %}
 
@@ -10,27 +11,27 @@
 {% url 'admin:jsi18n' as jsi18nurl %}
   <script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
 {{ media }}
-  <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js" /></script>
+  <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}" /></script>
 
-<script src="{{ STATIC_URL }}jquery/jquery.1.8.0.min.js"></script>
-<script src="{{ STATIC_URL }}jquery/jquery.ui.widget.js"></script>
-<script src="{{ STATIC_URL }}jquery/tmpl.min.js"></script>
-<script src="{{ STATIC_URL }}jquery/load-image.min.js"></script>
-<script src="{{ STATIC_URL }}jquery/canvas-to-blob.min.js"></script>
-<script src="{{ STATIC_URL }}jquery/bootstrap.min.js"></script>
-<script src="{{ STATIC_URL }}jquery/bootstrap-image-gallery.min.js"></script>
-<script src="{{ STATIC_URL }}jquery/jquery.iframe-transport.js"></script>
-<script src="{{ STATIC_URL }}jquery/jquery.fileupload.js"></script>
-<script src="{{ STATIC_URL }}jquery/jquery.fileupload-fp.js"></script>
-<script src="{{ STATIC_URL }}jquery/jquery.fileupload-ui.js"></script>
+<script src="{% static 'jquery/jquery.1.8.0.min.js' %}"></script>
+<script src="{% static 'jquery/jquery.ui.widget.js' %}"></script>
+<script src="{% static 'jquery/tmpl.min.js' %}"></script>
+<script src="{% static 'jquery/load-image.min.js' %}"></script>
+<script src="{% static 'jquery/canvas-to-blob.min.js' %}"></script>
+<script src="{% static 'jquery/bootstrap.min.js' %}"></script>
+<script src="{% static 'jquery/bootstrap-image-gallery.min.js' %}"></script>
+<script src="{% static 'jquery/jquery.iframe-transport.js' %}"></script>
+<script src="{% static 'jquery/jquery.fileupload.js' %}"></script>
+<script src="{% static 'jquery/jquery.fileupload-fp.js' %}"></script>
+<script src="{% static 'jquery/jquery.fileupload-ui.js' %}"></script>
 <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
-<!--[if gte IE 8]><script src="{{ STATIC_URL }}jquery/jquery.xdr-transport.js"></script><![endif]-->
+<!--[if gte IE 8]><script src="{% static 'jquery/jquery.xdr-transport.js"></script><![endif]-->
 
 {% endblock %}
 
 {% block extrastyle %}{{ block.super }}
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/forms.css" />
+  <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}" />
   <!-- Bootstrap Image Gallery styles -->
   <link rel="stylesheet" href="http://blueimp.github.com/Bootstrap-Image-Gallery/css/bootstrap-image-gallery.min.css">
   <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->

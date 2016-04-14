@@ -47,6 +47,8 @@ class MultiUploadAdmin(admin.ModelAdmin):
                                    "image/pjpeg",
                                    "image/png", )
 
+    multiupload_view_context = {}
+
     @property
     def upload_options(self):
         return {
@@ -280,4 +282,4 @@ class MultiUploadAdmin(admin.ModelAdmin):
                           )
 
     def get_upload_context(self):
-        return {}
+        return self.multiupload_view_context.copy()

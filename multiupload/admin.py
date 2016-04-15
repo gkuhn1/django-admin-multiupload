@@ -4,13 +4,14 @@ try:
 except ImportError:
     from urllib.parse import urlencode
 
+import json
+
 from django.contrib import admin
 from django.shortcuts import render, get_object_or_404
 from django.conf.urls import patterns,url
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
-import json
 
 
 class MultiUploadAdmin(admin.ModelAdmin):
@@ -45,6 +46,8 @@ class MultiUploadAdmin(admin.ModelAdmin):
     multiupload_acceptedformats = ("image/jpeg",
                                    "image/pjpeg",
                                    "image/png", )
+
+    multiupload_view_context = {}
 
     @property
     def upload_options(self):
@@ -271,8 +274,12 @@ class MultiUploadAdmin(admin.ModelAdmin):
                 'has_add_permission': False,
                 'has_change_permission': False,
             }
+            context.update(self.get_upload_context())
 
             return render(request,
                           self.multiupload_template,
                           context,
                           )
+
+    def get_upload_context(self):
+        return self.multiupload_view_context.copy()

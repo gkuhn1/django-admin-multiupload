@@ -12,7 +12,11 @@ pip install git+git://github.com/gkuhn1/django-admin-multiupload.git
 Requeriments
 ------------
 
-Django>=1.4
+Django1.4 ~ 1.7 : Use release v1.7
+
+Django1.8 ~ 1.9 : Use release v1.8
+
+Django1.10 ~ 1.11 : Use master
 
 
 Usage
@@ -85,10 +89,6 @@ Usage
             obj.delete()
 
 ```
-
-
-Example of usage can be founded here:
-https://github.com/gkuhn1/django-adminfiles/blob/master/adminfiles/admin.py
 
 Checkout some full example project in example folder.
 Superuser: Login: demo Pass: demo

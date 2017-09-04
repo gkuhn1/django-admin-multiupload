@@ -4,7 +4,7 @@
 from setuptools import setup, find_packages
 
 setup(name='admin_multiupload',
-      version='1.8',
+      version='1.10',
       description='Provides a interface to multi file upload for django admin.',
       author='Guilherme Kuhn',
       author_email='g.kuhn0@gmail.com',

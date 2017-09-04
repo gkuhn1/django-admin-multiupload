@@ -22,3 +22,7 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+env*
+docker-compose.yml
+example/media

@@ -147,7 +147,7 @@ class MultiUploadAdmin(admin.ModelAdmin):
         '''
         Function to delete a file.
         '''
-        obj = get_object_or_404(self.queryset(request), pk=pk)
+        obj = get_object_or_404(self.get_queryset(request), pk=pk)
         return obj.delete()
 
     @csrf_exempt

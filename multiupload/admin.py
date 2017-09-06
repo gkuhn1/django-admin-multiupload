@@ -233,7 +233,6 @@ class MultiUploadAdmin(admin.ModelAdmin):
                 # that value is not in the set when uploaded by XHR
                 if "text/html" in request.META["HTTP_ACCEPT"]:
                     content_type = "text/html"
-                content_type = "text/html"
 
                 # return the data to the uploading plugin
                 return HttpResponse(response_data, content_type=content_type)

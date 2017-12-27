@@ -16,7 +16,7 @@ Django1.4 ~ 1.7 : Use release v1.7
 
 Django1.8 ~ 1.9 : Use release v1.8
 
-Django1.10 ~ 1.11 : Use master
+Django1.10 ~ 1.11 ~ 2.0 : Use master
 
 
 Usage

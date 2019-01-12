@@ -43,6 +43,8 @@ Usage
         multiupload_maxfilesize = 3 * 2 ** 20 # 3 Mb
         # min allowed filesize for uploads in bytes
         multiupload_minfilesize = 0
+        # limit concurrent uploads in order to avoid timeouts (try 6–10 if experiencing problems)
+        multiupload_limitconcurrentuploads = None
         # tuple with mimetype accepted
         multiupload_acceptedformats = ( "image/jpeg",
                                         "image/pjpeg",
@@ -92,8 +94,3 @@ Usage
 
 Checkout some full example project in example folder.
 Superuser: Login: demo Pass: demo
-
-
-
-
-

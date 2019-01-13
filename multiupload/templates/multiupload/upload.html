@@ -175,7 +175,8 @@ $(function () {
 
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
-      formData: [{ name: "csrfmiddlewaretoken", value: "{{ csrf_token }}"}]
+      formData: [{ name: "csrfmiddlewaretoken", value: "{{ csrf_token }}"}],
+      limitConcurrentUploads: {{ limitconcurrentuploads }}
       }).bind('fileuploadsubmit', function (e, data) {
         var inputs = data.context.find(':input');
         if (inputs.filter('[required][value=""]').first().focus().length) {

@@ -46,6 +46,7 @@ class MultiUploadAdmin(admin.ModelAdmin):
     multiupload_acceptedformats = ("image/jpeg",
                                    "image/pjpeg",
                                    "image/png", )
+    multiupload_limitconcurrentuploads = None
 
     multiupload_view_context = {}
 
@@ -262,6 +263,10 @@ class MultiUploadAdmin(admin.ModelAdmin):
                 # some of the parameters to be checked by javascript
                 "maxfilesize": self.upload_options["maxfilesize"],
                 "minfilesize": self.upload_options["minfilesize"],
+                "limitconcurrentuploads": (
+                    'undefined' if self.multiupload_limitconcurrentuploads is None
+                    else self.multiupload_limitconcurrentuploads
+                ),
                 # django admin parameters
                 "object": object,
                 'media': self.media,

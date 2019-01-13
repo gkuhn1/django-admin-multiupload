@@ -39,6 +39,7 @@ class GalleryAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
 class ImageAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
     multiupload_form = False
     multiupload_list = True
+    multiupload_limitconcurrentuploads = 6
 
 
 admin.site.register(Gallery, GalleryAdmin)

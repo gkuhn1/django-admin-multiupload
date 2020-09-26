@@ -9,7 +9,7 @@ Installation
 
 pip install git+git://github.com/gkuhn1/django-admin-multiupload.git
 
-Requeriments
+Requierements
 ------------
 
 Django1.4 ~ 1.7 : Use release v1.7

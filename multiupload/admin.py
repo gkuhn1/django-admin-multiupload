@@ -8,8 +8,8 @@ import json
 
 from django.contrib import admin
 from django.shortcuts import render, get_object_or_404
-from django.conf.urls import url
-from django.urls import reverse
+# from django.conf.urls import url
+from django.urls import reverse, url
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
 

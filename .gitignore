@@ -27,3 +27,5 @@ env*
 docker-compose.yml
 example/media
 .DS_Store
+.idea
+.idea/

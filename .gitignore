@@ -26,3 +26,4 @@ pip-log.txt
 env*
 docker-compose.yml
 example/media
+.DS_Store
